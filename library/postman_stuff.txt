@@ -1,0 +1,14 @@
+// update book
+PUT http://localhost:3000/api/books/591cadeff02ce67683bedb95
+
+{
+	"title": "Updated The Murder House Title",
+	"pages": 300
+}
+
+// update genre
+PUT http://localhost:3000/api/genres/591cacacf02ce67683bedb93
+
+{
+	"Name": "Thriller"
+}
