@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //middleware
+app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());  //handle payload information
 
 // include models

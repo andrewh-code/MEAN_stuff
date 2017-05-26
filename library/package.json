@@ -13,6 +13,7 @@
     "express": "*",
     "body-parser": "*",
     "mongoose":"*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "bower": "*"
   }
 }
