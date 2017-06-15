@@ -1,0 +1,19 @@
+{
+  "name": "log_tracker",
+  "version": "1.0.0",
+  "description": "log tracking",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andrewh-code",
+  "license": "ISC",
+
+  "dependencies": {
+    "express": "4.15.3",
+    "body-parser": "1.17.2",
+    "mongoose":"4.10.4",
+    "nodemon": "1.11.0",
+    "bower": "*"
+  }
+}
