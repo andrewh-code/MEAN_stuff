@@ -25,3 +25,7 @@ module.exports.getLogInfo = function(callback){
     LogInfo.find(callback);
 }
 
+// method to add log to the backend
+module.exports.addNewLog = function(info, callback){
+    LogInfo.create(info, callback);
+}

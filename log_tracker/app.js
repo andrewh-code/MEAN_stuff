@@ -63,6 +63,18 @@ app.get('/info', function(request, response){
     })
 });
 
+// api to post/add the log info
+app.post('/info', function(request, response){
+    var bodyInfo = request.body;    // parse the body of the request
+
+    TrackerInfo.addNewEntry(function(err, bodyInfo){
+        if(err){
+            throw err;
+        } 
+        response.json(bodyInfo);
+    });
+});
+
 // start  server
 app.listen(port, function(){
     console.log("now servering on port " + port);
