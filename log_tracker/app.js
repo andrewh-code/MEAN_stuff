@@ -8,11 +8,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+// middleware
 var port = 54321;
-
-// express middleware
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+app.use(bodyParser.json());  //handle payload information
 
 // include the model
 var User = require('./models/user');
