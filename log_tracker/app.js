@@ -66,8 +66,12 @@ app.get('/info', function(request, response){
 // api to post/add the log info
 app.post('/info', function(request, response){
     var bodyInfo = request.body;    // parse the body of the request
+    if (bodyInfo == null){
+        throw 'bodyInfo is empty';
+    }
+    
 
-    TrackerInfo.addNewEntry(function(err, bodyInfo){
+    TrackerInfo.addNewEntry(bodyInfo, function(err, bodyInfo){
         if(err){
             throw err;
         } 

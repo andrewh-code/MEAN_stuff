@@ -18,7 +18,7 @@ var infoSchema = mongoose.Schema({
 })
 
 // export the info schema
-var LogInfo = module.exports = mongoose.model('info', infoSchema);
+var LogInfo = module.exports = mongoose.model('infos', infoSchema);
 
 // create methods for the info
 module.exports.getLogInfo = function(callback){
@@ -26,6 +26,6 @@ module.exports.getLogInfo = function(callback){
 }
 
 // method to add log to the backend
-module.exports.addNewLog = function(info, callback){
+module.exports.addNewEntry = function(info, callback){
     LogInfo.create(info, callback);
 }
