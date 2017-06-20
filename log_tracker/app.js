@@ -17,15 +17,22 @@ var User = require('./models/user');
 var TrackerInfo = require('./models/info');
 
 // create mongoosedb connection
-// var mongooseURL = 'mongodb://localhost:27017/jobtracker';
-// mongoose.connect(mongooseURL);
-// var db = mongoose.connection;
+var mongooseURL = 'mongodb://localhost:27017/jobtracker';
+mongoose.connect(mongooseURL);
+var db = mongoose.connection;
+db.on('error', function () {
+  throw new Error('unable to connect to database at ' + mongooseURL);
+});
+
 
 // include the routes
 var infoRoutes = require('./routes/logInfoRoutes');
 
 app.use('/api', infoRoutes);
 
+app.use(function(req, res) {
+      res.status(404).send('404, page not found');
+  });
 
 // // rest api call to get the user
 // app.get('/user/:_id', function(request, response){
@@ -49,32 +56,6 @@ app.use('/api', infoRoutes);
 //     })
 // });
 
-
-// // rest api to get job info
-// app.get('/info', function(request, response){
-//     TrackerInfo.getLogInfo(function(err, infos){
-//         if (err){
-//             throw err;
-//         }
-//         response.json(infos);
-//     })
-// });
-
-// // api to post/add the log info
-// app.post('/info', function(request, response){
-//     var bodyInfo = request.body;    // parse the body of the request
-//     if (bodyInfo == null){
-//         throw 'bodyInfo is empty';
-//     }
-    
-
-//     TrackerInfo.addNewEntry(bodyInfo, function(err, bodyInfo){
-//         if(err){
-//             throw err;
-//         } 
-//         response.json(bodyInfo);
-//     });
-// });
 
 // start  server
 app.listen(port, function(){
