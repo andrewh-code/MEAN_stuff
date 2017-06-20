@@ -17,65 +17,64 @@ var User = require('./models/user');
 var TrackerInfo = require('./models/info');
 
 // create mongoosedb connection
-var mongooseURL = 'mongodb://localhost:27017/jobtracker';
-mongoose.connect(mongooseURL);
-var db = mongoose.connection;
+// var mongooseURL = 'mongodb://localhost:27017/jobtracker';
+// mongoose.connect(mongooseURL);
+// var db = mongoose.connection;
 
-// create REST api calls
-// hello world test
-app.get('/', function(request, response){
-    response.send("Hello world");
-});
+// include the routes
+var infoRoutes = require('./routes/logInfoRoutes');
 
-
-// rest api call to get the user
-app.get('/user/:_id', function(request, response){
-    // user variable to represent the _id var
-    var userid = request.params._id;
-    User.getUser(userid, function(err, user){
-        if (err){
-            throwerr;
-        }
-        response.json(user);
-    }) 
-});
-
-// rest api to get all users
-app.get('/user', function(request, response){
-    User.getUsers(function(err, users){
-        if(err){
-            throw err;
-        }
-        response.json(users);
-    })
-});
+app.use('/api', infoRoutes);
 
 
-// rest api to get job info
-app.get('/info', function(request, response){
-    TrackerInfo.getLogInfo(function(err, infos){
-        if (err){
-            throw err;
-        }
-        response.json(infos);
-    })
-});
+// // rest api call to get the user
+// app.get('/user/:_id', function(request, response){
+//     // user variable to represent the _id var
+//     var userid = request.params._id;
+//     User.getUser(userid, function(err, user){
+//         if (err){
+//             throwerr;
+//         }
+//         response.json(user);
+//     }) 
+// });
 
-// api to post/add the log info
-app.post('/info', function(request, response){
-    var bodyInfo = request.body;    // parse the body of the request
-    if (bodyInfo == null){
-        throw 'bodyInfo is empty';
-    }
+// // rest api to get all users
+// app.get('/user', function(request, response){
+//     User.getUsers(function(err, users){
+//         if(err){
+//             throw err;
+//         }
+//         response.json(users);
+//     })
+// });
+
+
+// // rest api to get job info
+// app.get('/info', function(request, response){
+//     TrackerInfo.getLogInfo(function(err, infos){
+//         if (err){
+//             throw err;
+//         }
+//         response.json(infos);
+//     })
+// });
+
+// // api to post/add the log info
+// app.post('/info', function(request, response){
+//     var bodyInfo = request.body;    // parse the body of the request
+//     if (bodyInfo == null){
+//         throw 'bodyInfo is empty';
+//     }
     
 
-    TrackerInfo.addNewEntry(bodyInfo, function(err, bodyInfo){
-        if(err){
-            throw err;
-        } 
-        response.json(bodyInfo);
-    });
-});
+//     TrackerInfo.addNewEntry(bodyInfo, function(err, bodyInfo){
+//         if(err){
+//             throw err;
+//         } 
+//         response.json(bodyInfo);
+//     });
+// });
 
 // start  server
 app.listen(port, function(){
