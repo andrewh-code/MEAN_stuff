@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .modal-header, h4, .close {
+      background-color: #4286f4;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <center>
+      <h2>Modal Submit Info</h2>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-default btn-lg" id="myBtn">Add Entry</button>
+  </center>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <!--	Contact Phone	Extra Comments -->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-edit"></span> Submit Job Information</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="date"><span class="glyphicon glyphicon-calendar"></span> Date</label>
+              <input type="text" class="form-control" id="date" placeholder="mm/dd/YYYY">
+            </div>
+            <div class="form-group">
+              <label for="action"><span class="glyphicon glyphicon-list-alt"></span> Action</label>
+              <!--<input type="text" class="form-control" id="action" placeholder="Action"> -->
+              <br>
+              <select name="action" id="action">
+                  <option value="nothing"></option>
+                  <option value="Submit Resume/CL">Submit Resume/CL</option>
+                  <option value="Phone Interveiw">Phone Interveiw</option>
+                  <option value="In Person Interview">In Person Interview</option>
+                  <option value="Networking">Networking</option>
+                  <option value="Meeting">Meeting</option>
+                  <option value="Skills training/development">Skills training/development"</option>
+                  <option value="Job Fairs">Job Fairs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="position"><span class="glyphicon glyphicon-user"></span> Position</label>
+                <input type="text" class="form-control" id="position" placeholder="Position">
+            </div>
+            <div class="form-group">
+                <label for="company"><span class="glyphicon glyphicon-briefcase"></span> Company</label>
+                <input type="text" class="form-control" id="company" placeholder="Company">
+            </div>
+            <div class="form-group">
+                <label for="address"><span class="glyphicon glyphicon-road"></span> Company Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Company's Address">
+            </div>
+            <div class="form-group">
+                <label for="contactname"><span class="glyphicon glyphicon-user"></span> Contact Name</label>
+                <input type="text" class="form-control" id="contactname" placeholder="Contact">
+            </div>
+            <div class="form-group">
+                <label for="contactemail"><span class="glyphicon glyphicon-envelope"></span> Contact E-mail</label>
+                <input type="email" class="form-control" id="contactemail" placeholder="contact@email.com">
+            </div>
+            <div class="form-group">
+                <label for="contactnumber"><span class="glyphicon glyphicon-phone-alt"></span> Contact Phone Number</label>
+                <input type="text" class="form-control" id="contactnumber" placeholder="(416)xxx-xxxx">
+            </div>
+            <div class="form-group">
+                <label for="comments"><span class="glyphicon glyphicon-file"></span> Extra Comments</label>
+                <!-- <input type="textarea" class="form-control" id="comments" placeholder="Comments" rows=10 cols=100> -->
+                <textarea class="form-control" id="comments" rows="5" cols="100">Extra Comments</textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <button type="submit" class="btn btn-success btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon glyphicon-ok"></span> Submit</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
+ 
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+</body>
+</html>
