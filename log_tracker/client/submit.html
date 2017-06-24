@@ -15,6 +15,9 @@
   .modal-footer {
       background-color: #f9f9f9;
   }
+  .clsDatePicker {
+    z-index: 100000;
+  }
   </style>
 </head>
 <body>
@@ -24,11 +27,11 @@
   <center>
       <h2>Modal Submit Info</h2>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-default btn-lg" id="myBtn">Add Entry</button>
+    <button type="button" class="btn btn-default btn-lg" id="myBtn" href="#entryModal">Add Entry</button>
   </center>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="entryModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -40,10 +43,15 @@
         </div>
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
-            <div class="form-group">
+            <!--<div class="form-group">
               <label for="date"><span class="glyphicon glyphicon-calendar"></span> Date</label>
-              <input type="text" class="form-control" id="date" placeholder="mm/dd/YYYY">
+              <input type="text" class="form-control" id="date" placeholder="mm/dd/YYYY">-->
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+                </div>
             </div>
+           
             <div class="form-group">
               <label for="action"><span class="glyphicon glyphicon-list-alt"></span> Action</label>
               <!--<input type="text" class="form-control" id="action" placeholder="Action"> -->
@@ -103,8 +111,24 @@
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
-        $("#myModal").modal();
+        $("#entryModal").modal();
     });
+});
+</script>
+
+<script>
+    $('#idTourDateDetails').datepicker({
+     dateFormat: 'dd-mm-yy',
+     minDate: '+5d',
+     changeMonth: true,
+     changeYear: true,
+ });
+ </script>
+ <script>
+     $(function() {
+  $('#datetimepicker1').datetimepicker({
+    language: 'pt-BR'
+  });
 });
 </script>
 
