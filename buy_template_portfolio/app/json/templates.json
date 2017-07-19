@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "News Magazine Theme",
+        "description": "Description of news magazine",
+        "type": "html5",
+        "price": 9.99,
+        "image": "f6-template-news-mag.svg"
+    },
+    {
+        "id": 2,
+        "name": "Real Estate Theme",
+        "description": "Description of news magazine",
+        "type": "html5",
+        "price": 39.99,
+        "image": "f6-template-realestate.svg"
+    },
+    {
+        "id": 3,
+        "name": "Ecommerce Theme",
+        "description": "Description of news magazine",
+        "type": "html5",
+        "price": 29.99,
+        "image": "foundation6-templates-03.svg"
+    },
+    {
+        "id": 4,
+        "name": "Agency Theme",
+        "description": "Description of news magazine",
+        "type": "html5",
+        "price": 19.99,
+        "image": "foundation6-templates-04.svg"
+    },
+    {
+        "id": 5,
+        "name": "Product Theme",
+        "description": "Description of news magazine",
+        "type": "html5",
+        "price": 19.99,
+        "image": "foundation6-templates-02-product.svg"
+    },
+    {
+        "id": 6,
+        "name": "Portfolio Theme",
+        "description": "Description of portfolio",
+        "type": "html5",
+        "price": 19.99,
+        "image": "foundation6-templates-07-portfolio.svg"
+    }
+]
