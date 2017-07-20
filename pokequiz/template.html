@@ -12,33 +12,51 @@
 <div class="quiz-area" ng-show="inProgress">
 	<!-- quiz still in progress -->
     <div ng-show="!quizOver">
-        <h2 id="question">{{question}}</h2>
-		<ul id="options">
-			<li ng-repeat="option in options">
-				<label>
-					<input type="radio" name="answer" value="{{option}}">
-					{{option}}
-				</label>
-			</li>
-		</ul>
-		<button type="button" class="btn btn-primary" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+        <h2 id="question">Is {{name}} a Pokemon or technology related term?</h2>
+        <br>
+        <div class="container">
+            <center>
+                <div class="btn-group" data-toggle="buttons">
+                    <!--<li ng-repeat="option in options">-->
+                        <label class="btn btn-primary" ng-repeat="option in options">
+                            <input type="radio" name="answer" value={{option}}> {{option}}
+                        </label>
+                    <!--</li>-->
+                </div>
+            </div>
+            </center>
+        </div>
+            <!--
+            <ul id="options">
+                <li ng-repeat="option in options">
+                    <label="btn btn-primary">
+                        <input type="radio" name="answer" value="{{option}}"> {{option}}
+                    </label>
+                </li>
+            </ul>
+            -->
+        <br><br><br>
+		<button type="button" class="btn btn-primary btn-lg" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
  
-                <div ng-show="!answerMode">
+        <div ng-show="!answerMode">
+            <button type="button" class="btn btn-primary btn-lg" ng-click="nextQuestion()" class="next-question">Next</button>
 			<br>
 			<span ng-show="correctAns">
-                That is correct!
+                <p class="correct">That is correct!</p>
                 <br>
                 <p>{{reason}}</p>
+                <br>
                 <img src="{{img}}">
             </span>
             <br>
 			<span ng-show="!correctAns">
-                Sorry, that is an incorrect answer.
+                <p class="incorrect">Sorry, that is an incorrect answer.</p>
                 <br>
                 <p>{{reason}}</p>
+                <br>
                 <img src="{{img}}">
             </span>
-            <button type="button" class="btn btn-primary" ng-click="nextQuestion()" class="next-question">Next</button>
+            
 		</div>
 	</div>
 
@@ -47,10 +65,16 @@
         <h2>Quiz is now over</h2>
         <button type="button" class="btn btn-primary" ng-click="reset()">Play again</button>
     </div>
+
+    <div id="score">
+        <p class="score"> Score: {{score}}</p>
+    </div>
+
 </div>
 
 
 <div class="intro" ng-show="!inProgress">
-	<p>Welcome to the QuizApp</p>
-	<button type="button" class="btn btn-primary" id="startQuiz" ng-click="start()">Start the Quiz</button>
+	<p>Welcome to the Pokemon quiz app. Is it a Pokemon or technology related?</p>
+	
+    <button type="button" class="btn btn-primary" id="startQuiz" ng-click="start()">Start the Quiz</button>
 </div>

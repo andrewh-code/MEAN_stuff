@@ -1,0 +1,35 @@
+h1, h2 {
+    text-align: center;
+}
+
+button.btn {
+    display: block;
+    margin: 0 auto;
+}
+
+ul, li {
+    list-style-type: none;
+
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+p {
+    font-weight: bold;
+    text-align: center;
+}
+
+p.correct {
+    color: #53a80a;
+}
+
+p.incorrect {
+    color: #d32710;
+}
+p.score{
+    text-transform: uppercase;
+    text-align: center;
+}
+
