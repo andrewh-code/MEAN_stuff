@@ -1,0 +1,3 @@
+- run a local server 
+- ie) npm, local-server, http-server, node, etc
+- open the index.html file in a browser and start theq quiz
