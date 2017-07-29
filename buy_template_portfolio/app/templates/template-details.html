@@ -8,9 +8,10 @@
             <h3>{{templateDetails.name}}</h3>
             <p>{{templateDetails.description}}</p>
             <h4>{{templateDetails.price | currency}}</h4>
-            <form action="https://www.paypal.com" method="post">    <!-- paypal URL needs to match the template e-mail address in order to be redirected to the paypal site -->
+            <!--<form action="https://www.paypal.com" method="post">     paypal URL needs to match the template e-mail address in order to be redirected to the paypal site -->
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                 <input type="hidden" name="cmd" value="_xclick">    <!-- paypal buy now button -->
-                <input type="hidden" name="business" value="buytemplates@templates.com">    <!-- email address -->
+                <input type="hidden" name="business" value="techguyseller@sandbox.com">    <!-- email address -->
                 <input type="hidden" name="item_name" value="{{template.name}}">
                 <input type="hidden" name="item_number" value="{{template.id}}">
                 <input type="hidden" name="currency_code" value="CAD">
@@ -19,7 +20,7 @@
                 <input type="hidden" name="rm" value="2">
                 <input type="hidden" name="return" value="http://localhost:8000">
                 <input type="hidden" name="cancel_return" value="http://localhost:8000">
-                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_107x26.png" name="submit" alt="Buy Now"
+                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_107x26.png" name="submit" alt="Buy Now">
             </form>
         </div>
 </div>
