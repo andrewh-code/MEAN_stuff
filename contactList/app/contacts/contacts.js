@@ -14,7 +14,7 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
     var ref = firebase.database().ref('contacts');
     $scope.contacts = $firebaseArray(ref);
 
-    //console.log($scope.contacts);
+    console.log($scope.contacts);
 
     // add functions
     $scope.showAddForm = function(){
@@ -42,18 +42,18 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
         var github;
         var linkedin;
 
-        if ($scope.name){name = $scope.name;}else{name = null;}
-        if ($scope.email){email = $scope.email;}else{email = null;}
-        if ($scope.company){company = $scope.company;}else{company = null;}
-        if ($scope.workPhone){workPhone = $scope.workPhone;}else{workPhone = null;}
-        if ($scope.mobilePhone){mobilePhone = $scope.mobilePhone;}else{mobilePhone = null;}
-        if ($scope.homePhone){homePhone = $scope.homePhone;}else{homePhone = null;}
-        if ($scope.streetAddress){streetAddress = $scope.streetAddress;}else{streetAddress = null;}
-        if ($scope.city){city = $scope.city;}else{city = null;}
-        if ($scope.province){province = $scope.province;}else{province = null;}
-        if ($scope.zipCode){zipCode = $scope.province;}else{zipCode = null;}
-        if ($scope.github){github = $scope.github;}else{github = null;}
-        if ($scope.linkedin){linkedin = $scope.linkedin;}else{linkedin = null;}
+        if ($scope.name){name = $scope.name;}else{name = "";}
+        if ($scope.email){email = $scope.email;}else{email = "";}
+        if ($scope.company){company = $scope.company;}else{company = "";}
+        if ($scope.workPhone){workPhone = $scope.workPhone;}else{workPhone = "";}
+        if ($scope.mobilePhone){mobilePhone = $scope.mobilePhone;}else{mobilePhone = "";}
+        if ($scope.homePhone){homePhone = $scope.homePhone;}else{homePhone = "";}
+        if ($scope.streetAddress){streetAddress = $scope.streetAddress;}else{streetAddress = "";}
+        if ($scope.city){city = $scope.city;}else{city = "";}
+        if ($scope.province){province = $scope.province;}else{province = "";}
+        if ($scope.zipCode){zipCode = $scope.province;}else{zipCode = "";}
+        if ($scope.github){github = $scope.github;}else{github = "";}
+        if ($scope.linkedin){linkedin = $scope.linkedin;}else{linkedin = "";}
 
         // build object after assigning all the values
         $scope.contacts.$add({
@@ -88,20 +88,40 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
       });
     }
 
+    // function to show the contact form in the view
+    $scope.showContact = function(contact){
+      console.log("hello from showContact: " + contact.phones);
+
+        $scope.name         = contact.name;
+        $scope.email        = contact.email;
+        $scope.company      = contact.company;
+        $scope.workPhone    = contact.phones[0].work;
+        $scope.mobilePhone  = contact.phones[0].mobile;
+        $scope.homePhone    = contact.phones[0].home;
+        $scope.streetAddress = contact.address[0].streetAddress;
+        $scope.city         = contact.address[0].city;
+        $scope.province     = contact.address[0].province;
+        $scope.zipCode      = contact.address[0].zipCode;
+        $scope.github       = contact.github;
+        $scope.linkedin   = contact.linkedin;
+
+        $scope.contactShow = true;
+    }
+
     function clearFields(){
       console.log("Clearing fields...");
-        $scope.name = "";
-        $scope.email = "";
-        $scope.company = "";
-        $scope.workPhone = "";
-        $scope.mobilePhone = "";
-        $scope.homePhone = "";
-        $scope.streetAddress = "";
-        $scope.city = "";
-        $scope.province = "";
-        $scope.zipCode = "";
-        $scope.github = "";
-        $scope.linkedin = "";
+        $scope.name           = "";
+        $scope.email          = "";
+        $scope.company        = "";
+        $scope.workPhone      = "";
+        $scope.mobilePhone    = "";
+        $scope.homePhone      = "";
+        $scope.streetAddress  = "";
+        $scope.city           = "";
+        $scope.province       = "";
+        $scope.zipCode        = "";
+        $scope.github         = "";
+        $scope.linkedin       = "";
     }
     
 }]);
