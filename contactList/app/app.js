@@ -9,7 +9,7 @@ angular.module('contactList', [
   'contactList.contacts'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+  $locationProvider.hashPrefix('');   //remove the hashprefix '!'
 
   $routeProvider.otherwise({redirectTo: '/contacts'});
 }]);
