@@ -15,15 +15,39 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
     $scope.contacts = $firebaseArray(ref);
 
     console.log($scope.contacts);
+    var editContact;
 
     // add functions
     $scope.showAddForm = function(){
       $scope.addFormShow = true;    // the ng-show="addFormShow" tag in the contacts.html will be set to true and then show the form (must be on button-click though)
+    }
+
+    $scope.showEditForm = function(contact){
+      $scope.editFormShow = true;
+      
+      editContact = contact;
+      console.log(editContact);
+
+      // show the current values on the form
+      $scope.name         = contact.name;
+      $scope.email        = contact.email;
+      $scope.company      = contact.company;
+      $scope.workPhone    = contact.phones[0].work;
+      $scope.mobilePhone  = contact.phones[0].mobile;
+      $scope.homePhone    = contact.phones[0].home;
+      $scope.streetAddress = contact.address[0].streetAddress;
+      $scope.city         = contact.address[0].city;
+      $scope.province     = contact.address[0].province;
+      $scope.zipCode      = contact.address[0].zipCode;
+      $scope.github       = contact.github;
+      $scope.linkedin   = contact.linkedin;
+
 
     }
 
     $scope.hide = function(){
         $scope.addFormShow = false;
+        $scope.contactShow = false;
     }
 
     $scope.addFormSubmit = function() {
@@ -78,7 +102,7 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
           console.log('added contact with ID: ' + id);
 
           // clear the form after adding the contact
-          clearFields();
+          //clearFields();
 
           // hide form after submitting
           $scope.addFormShow = false;
@@ -87,6 +111,51 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
           $scope.msg = "Contact Added";
       });
     }
+
+
+    // edit contacts
+    $scope.editFormSubmit = function(contact){
+      console.log("hello from editFormSubmit");
+
+      // storing everything as a firebase array instead of a firebase object (object has the $id)
+      // get contact ID
+      var id = editContact.$id;
+     
+      var record = $scope.contacts.$getRecord();
+      console.log("temp contact is: " + "\n");
+      console.log(editContact);
+      
+      // find a better way to do this
+      
+      // assign updated values
+      // record.name                     = $scope.name;
+      // record.email                    = $scope.email;
+      // record.phones[0].work           = $scope.workPhone;
+      // record.phones[0].mobile         = $scope.mobilePhone;
+      // record.phones[0].home           = $scope.homePhone;
+      // record.address[0].streetAddress = $scope.streetAddress;
+      // record.address[0].city          = $scope.city;
+      // record.address[0].province      = $scope.province;
+      // record.address[0].zipCode       = $scope.zipCode;
+      // record.github                   = $scope.github;
+      // record.linkedin                 = $scope.linkedin;
+      
+      // save contact to firebase
+      // $scope.contacts.$save(record).then(function(ref){
+      //   console.log(ref.key);
+      // });
+
+      // clear the fields after updating the contact
+      //clearFields();
+
+      // hide the edit contact form
+      $scope.editFormShow = false;
+
+      // {{msg}}
+      $scope.msg = "Contact Updated";
+
+    }
+
 
     // function to show the contact form in the view
     $scope.showContact = function(contact){
