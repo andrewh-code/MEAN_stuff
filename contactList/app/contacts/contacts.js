@@ -17,7 +17,7 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
     console.log($scope.contacts);
     var editContact;
 
-    // add functions
+    // show adding contacts form
     $scope.showAddForm = function(){
       $scope.addFormShow = true;    // the ng-show="addFormShow" tag in the contacts.html will be set to true and then show the form (must be on button-click though)
     }
@@ -41,7 +41,6 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
       $scope.zipCode      = contact.address[0].zipCode;
       $scope.github       = contact.github;
       $scope.linkedin   = contact.linkedin;
-
 
     }
 
@@ -114,39 +113,67 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
 
 
     // edit contacts
-    $scope.editFormSubmit = function(contact){
+    $scope.editFormSubmit = function(){
       console.log("hello from editFormSubmit");
 
       // storing everything as a firebase array instead of a firebase object (object has the $id)
       // get contact ID
       var id = editContact.$id;
      
-      var record = $scope.contacts.$getRecord();
-      console.log("temp contact is: " + "\n");
-      console.log(editContact);
+      var record = $scope.contacts.$getRecord(id);
+      var index = $scope.contacts.$indexFor(id);
       
-      // find a better way to do this
+      // console.log("temp contact is: " + "\n");
+      //console.log(editContact);
+      // console.log(editContact.name);
+      // TODO: Figure out a way to pass in the $id of a contact from the array (firebase api dopucmentation out of date?)
       
       // assign updated values
-      // record.name                     = $scope.name;
-      // record.email                    = $scope.email;
-      // record.phones[0].work           = $scope.workPhone;
-      // record.phones[0].mobile         = $scope.mobilePhone;
-      // record.phones[0].home           = $scope.homePhone;
-      // record.address[0].streetAddress = $scope.streetAddress;
-      // record.address[0].city          = $scope.city;
-      // record.address[0].province      = $scope.province;
-      // record.address[0].zipCode       = $scope.zipCode;
-      // record.github                   = $scope.github;
-      // record.linkedin                 = $scope.linkedin;
-      
-      // save contact to firebase
-      // $scope.contacts.$save(record).then(function(ref){
-      //   console.log(ref.key);
-      // });
+      if (($scope.name) && ($scope.name != $scope.contacts[index].name)){
+          $scope.contacts[index].name                     = $scope.name;
+      }
+      if (($scope.email) && ($scope.email != $scope.contacts[index].email)){
+          $scope.contacts[index].email                    = $scope.email;
+      }
+      if (($scope.workPhone) && ($scope.workPhone != $scope.contacts[index].phones[0].work)){
+          $scope.contacts[index].phones[0].work           = $scope.workPhone;
+      }
+      if (($scope.mobilePhone) && ($scope.mobilePhone != $scope.contacts[index].phones[0].mobile)){
+        $scope.contacts[index].phones[0].mobile         = $scope.mobilePhone;
+      }
+      if (($scope.homePhone) && ($scope.homePhone != $scope.contacts[index].phones[0].home)){
+        $scope.contacts[index].phones[0].home           = $scope.homePhone;
+      }
+      if (($scope.streetAddress) && ($scope.streetAddress != $scope.contacts[index].address[0].streetAddress)){
+        $scope.contacts[index].address[0].streetAddress = $scope.streetAddress;
+      }
+      if (($scope.city) && ($scope.city != $scope.contacts[index].address[0].city)){
+        $scope.contacts[index].address[0].city          = $scope.city;
+      }
+      if (($scope.province) && ($scope.province != $scope.contacts[index].address[0].province)){
+        $scope.contacts[index].address[0].province      = $scope.province;
+      }
+      if (($scope.zipCode) && ($scope.zipCode != $scope.contacts[index].address[0].zipCode)){
+        $scope.contacts[index].address[0].zipCode       = $scope.zipCode;
+      }
+      if (($scope.github) && ($scope.github != $scope.contacts[index].github)){
+        $scope.contacts[index].github                   = $scope.github;
+      }
+      if (($scope.linkedin) && ($scope.linkedin != $scope.contacts[index].linkedin)){
+        $scope.contacts[index].linkedin                 = $scope.linkedin;
+      }
+
+      // firebase will reject any update/put options if ANY of the variables are undefined/null (set them to " " if they are)
+      $scope.contacts.$save(index)
+        .then(function(ref){
+          console.log("saving contact...");
+      })
+      .catch(function(error){
+        console.log(error);
+      })
 
       // clear the fields after updating the contact
-      //clearFields();
+      clearFields();
 
       // hide the edit contact form
       $scope.editFormShow = false;
@@ -175,6 +202,16 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
         $scope.linkedin   = contact.linkedin;
 
         $scope.contactShow = true;
+    }
+
+    // delete contacts from firebase
+    $scope.removeContact = function(contact){
+        
+        $scope.contacts.$remove(contact)
+        .catch(function(error){
+          console.log(error);
+        })
+
     }
 
     function clearFields(){
