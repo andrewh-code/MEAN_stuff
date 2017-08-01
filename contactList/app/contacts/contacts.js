@@ -207,10 +207,11 @@ angular.module('contactList.contacts', ['ngRoute', 'firebase'])   // inject the 
     // delete contacts from firebase
     $scope.removeContact = function(contact){
         
-        $scope.contacts.$remove(contact)
-        .catch(function(error){
-          console.log(error);
-        })
+        window.alert("delete functionality disabled for now");
+        // $scope.contacts.$remove(contact)
+        // .catch(function(error){
+        //   console.log(error);
+        // })
 
     }
 

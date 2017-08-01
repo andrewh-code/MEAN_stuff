@@ -21,6 +21,7 @@
                 </ul>
                 <div class="large-6 columns">
             </div>
+            <center><a class="button" ng-click="hide()" ng-show="contactShow">Close</a></center>
         </div>
     </div>
 
@@ -102,6 +103,7 @@
         <div class="row">
             <div class="large-12 columns">
                 <input type="submit" value="Add Contact" class="button"/>
+                <a class="button" ng-click="hide()" ng-show="addFormShow">Cancel</a>
             </div>
         </div>
     </form>
@@ -209,12 +211,14 @@
                     <td><a class="button tiny" ng-click="showEditForm(contact)">Edit</a>
                     <a class="button tiny alert" ng-click="removeContact(contact)">Delete</a></td>
                 </tr>
+                
             </tbody>
         </table>
     </div>
-     <div class="small-12 large-2 columns">
+    <!--<div class="small-12 large-2 columns">-->
+    <div class="large-12 columns">
         <a class="button large" ng-click="showAddForm()" ng-hide="addFormShow">+</a>    <!-- if addFormShow is true, the + button was clicked, hide the + button -->
-        <a class="button large" ng-click="hide()" ng-show="addFormShow">-</a>
-        <a class="button large" ng-click="hide()" ng-show="contactShow">-</a>
+        <!--<a class="button large" ng-click="hide()" ng-show="addFormShow">-</a>-->
+        <!--<a class="button large" ng-click="hide()" ng-show="contactShow">-</a>-->
     </div>
 </div>
